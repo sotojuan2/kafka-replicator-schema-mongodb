@@ -1,0 +1,12 @@
+{
+    "name": "mongo-cdc-sink",
+    "config": {
+      "connector.class": "com.mongodb.kafka.connect.MongoSinkConnector",
+      "topics": "CDCTutorial.Source",
+      "change.data.capture.handler": "com.mongodb.kafka.connect.sink.cdc.mongodb.ChangeStreamHandler",
+      "connection.uri": "mongodb+srv://test:test@cluster0.qzcwy.mongodb.net/?retryWrites=true&w=majority",
+      "database": "CDCTutorial",
+      "collection": "Destination"
+    }
+  }
+  

@@ -1,0 +1,16 @@
+{
+  "fields": [
+    {
+      "name": "field1",
+      "type": "string"
+    },
+    {
+      "name": "field2",
+      "type": "string"
+    }
+  ],
+  "connect.name": "com.test.namespace.EXTRA.CONTENT.MyEvent",
+  "namespace": "com.test.namespace",
+  "name": "MyEvent",
+  "type": "record"
+}
