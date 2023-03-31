@@ -8,7 +8,8 @@
       "output.format.value" : "schema",
       "output.schema.infer.value" : "true",
       "value.converter":"io.confluent.connect.avro.AvroConverter",
-      "value.converter.schema.registry.url": "http://srcSchemaregistry:8085"
+      "value.converter.schema.registry.url": "http://srcSchemaregistry:8085",
+      "offset.partition.name": "Juan3"
     }
   }
   
