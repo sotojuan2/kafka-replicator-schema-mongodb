@@ -222,12 +222,6 @@ services:
       CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
       CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
       CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
-  replicator-for-jar-transfer:
-    image: ${REPOSITORY}/cp-enterprise-replicator:${CONFLUENT_DOCKER_TAG}
-    hostname: replicator-for-jar-transfer
-    container_name: replicator-for-jar-transfer
-    volumes:
-      - mi3:/usr/share/java/kafka-connect-replicator/
     command:
       - bash
       - -c
@@ -239,5 +233,12 @@ services:
         /etc/confluent/docker/run &
         #
         sleep infinity
+  replicator-for-jar-transfer:
+    image: ${REPOSITORY}/cp-enterprise-replicator:${CONFLUENT_DOCKER_TAG}
+    hostname: replicator-for-jar-transfer
+    container_name: replicator-for-jar-transfer
+    volumes:
+      - mi3:/usr/share/java/kafka-connect-replicator/
+    command: "sleep infinity"
 volumes:
     mi3: {}
