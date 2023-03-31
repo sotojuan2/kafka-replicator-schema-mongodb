@@ -29,37 +29,33 @@ docker-compose exec srcKafka kafka-topics --bootstrap-server srcKafka:19092 --to
 HEADER="Content-Type: application/json"
 DATA=$( cat << EOF
 {
-  "name": "testReplicator",
-  "config": {
     "name": "testReplicator",
-    "connector.class": "io.confluent.connect.replicator.ReplicatorSourceConnector",
-    "tasks.max": "1",
-    "confluent.topic.replication.factor": "1",
-    "producer.override.enable.idempotence": "true",
-    "producer.override.acks": "all",
-    "producer.override.max.in.flight.requests.per.connection": "1",
-
-    "topic.whitelist": "CDCTutorial.Source",
-
-    "src.kafka.bootstrap.servers": "srcKafka:19092",
-    "src.value.converter": "io.confluent.connect.avro.AvroConverter",
-    "src.value.converter.schema.registry.url": "http://srcSchemaregistry:8085",
-    "src.key.converter": "io.confluent.connect.avro.AvroConverter",
-    "src.key.converter.schema.registry.url": "http://srcSchemaregistry:8085",
-
-    "dest.kafka.bootstrap.servers": "destKafka:29092",
-    "dest.value.converter": "io.confluent.connect.avro.AvroConverter",
-    "value.converter.schema.registry.url": "http://destSchemaregistry:8086",
-    "key.converter": "io.confluent.connect.avro.AvroConverter",
-    "key.converter.schema.registry.url": "http://destSchemaregistry:8086",
-
-    "transforms": "dropKeyExample",
-    "transforms.dropKeyExample.type": "io.confluent.connect.transforms.Drop$Key"
-
+    "config": {
+      "name": "testReplicator",
+      "connector.class": "io.confluent.connect.replicator.ReplicatorSourceConnector",
+      "tasks.max": "1",
+      "confluent.topic.replication.factor": "1",
+      "producer.override.enable.idempotence": "true",
+      "producer.override.acks": "all",
+      "producer.override.max.in.flight.requests.per.connection": "1",
+  
+      "topic.whitelist": "CDCTutorial.Source",
+  
+      "src.kafka.bootstrap.servers": "srcKafka:19092",
+      "src.value.converter": "io.confluent.connect.avro.AvroConverter",
+      "src.value.converter.schema.registry.url": "http://srcSchemaregistry:8085",
+      "src.key.converter.schemas.enable": "false",
+  
+      "dest.kafka.bootstrap.servers": "destKafka:29092",
+      "value.converter": "io.confluent.connect.avro.AvroConverter",
+      "value.converter.schema.registry.url": "http://destSchemaregistry:8086",
+      "key.converter.schemas.enable": "false"
+  
+    }
   }
-}
 EOF
 )
+
 
 
 RETCODE=1
