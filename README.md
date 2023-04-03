@@ -39,7 +39,5 @@ Create, update and delete documents on source collection and it will be replicat
 1. Stop the consumer (control C)
 2. Clean the docker cluster `docker-compose down -v`
 
-## Fix
 
-Set the `connect.name` schema property as `namespace` + `name` 
 
