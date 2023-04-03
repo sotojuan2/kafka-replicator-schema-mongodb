@@ -2,14 +2,14 @@
     "name": "mongo-cdc-source2",
     "config": {
       "connector.class": "com.mongodb.kafka.connect.MongoSourceConnector",
-      "connection.uri": "mongodb+srv://test:test@cluster0.qzcwy.mongodb.net/?retryWrites=true&w=majority",
+      "connection.uri": "mongodb+srv:///user:password@xxxxx.qzcwy.mongodb.net/?retryWrites=true&w=majority",
       "database": "CDCTutorial",
       "collection": "Source",
       "output.format.value" : "schema",
       "output.schema.infer.value" : "true",
       "value.converter":"io.confluent.connect.avro.AvroConverter",
       "value.converter.schema.registry.url": "http://srcSchemaregistry:8085",
-      "offset.partition.name": "Juan3"
+      "offset.partition.name": "Juan5"
     }
   }
   

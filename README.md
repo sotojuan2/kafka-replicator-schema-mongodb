@@ -10,19 +10,29 @@ Confirm the connect.name forces the replicated namespace in the destination sche
     ./start-cluster.sh
 ```
 
-Then add some content
+Then add source and sink connector
+
+### Source connector.
+
+Create source connector on source cluster.
 
 ```shell
-docker-compose exec srcSchemaregistry kafka-avro-console-producer --broker-list srcKafka:19092 --topic topic-test --property schema.registry.url=http://srcSchemaregistry:8085 --property value.schema="$(cat data/schema.json)"
-{"field1" : "a0", "field2": "b0"}
+cd mongodb
+curl -X POST -H "Content-Type: application/json" -d @cdc-source.json http://localhost:9083/connectors 
 ```
 
-Confirm the namespaces are different:
+### Sink connector.
+
+Create sink connector on target cluster.
 
 ```shell
-curl http://localhost:8085/subjects/topic-test-value/versions/1/schema | jq
-curl http://localhost:8086/subjects/topic-test-value/versions/1/schema | jq
+cd mongodb
+curl -X POST -H "Content-Type: application/json" -d @cdc-sink.json http://localhost:8083/connectors 
 ```
+
+Confirm the MongoDB connectors are running.
+
+Create, update and delete documents on source collection and it will be replicated on target collection.
 
 ### Clean-up
 

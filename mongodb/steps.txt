@@ -3,3 +3,8 @@ curl -X POST -H "Content-Type: application/json" -d @cdc-source.json http://loca
 docker exec -it connect bash
 confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:1.9.1
 curl -X POST -H "Content-Type: application/json" -d @cdc-sink.json http://localhost:8083/connectors 
+
+
+docker exec -it srcKafka bash
+
+kafka-console-consumer --bootstrap-server localhost:19092 --topic connect-offsets --from-beginning --property print.key=true
